@@ -156,17 +156,20 @@
         }
 
         /* --- Hero Section --- */
+        /* --- UPDATED --- */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            text-align: left;
         }
 
-        .hero-content {
-            max-width: 800px;
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            align-items: center;
+            gap: 50px;
         }
-        
+
         .hero-content .intro {
             color: var(--accent-gold);
             font-size: 1.1rem;
@@ -196,6 +199,43 @@
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
+        }
+        
+        /* --- NEW --- */
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero-image-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 300px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--accent-gold);
+            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+        }
+
+        .hero-image-wrapper::before {
+            content: "";
+            display: block;
+            padding-top: 100%; /* Creates a 1:1 aspect ratio */
+        }
+
+        .hero-image-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .hero-image-wrapper:hover img {
+            transform: scale(1.05);
         }
 
         /* --- Achievements Section --- */
@@ -307,38 +347,7 @@
         }
 
         /* --- About Me Section --- */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 2fr 3fr;
-            gap: 50px;
-            align-items: flex-start;
-        }
-        
-        .about-image {
-            width: 100%;
-            max-width: 300px;
-            border-radius: 5px;
-            position: relative;
-        }
-
-        .about-image-wrapper {
-            position: relative;
-            width: 100%;
-            padding-top: 100%; /* 1:1 Aspect Ratio */
-            border-radius: 50%;
-            overflow: hidden;
-            border: 3px solid var(--accent-gold);
-        }
-
-        .about-image-wrapper img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
+        /* --- UPDATED --- */
         .about-text h3 {
             font-size: 1.5rem;
             margin-top: 30px;
@@ -420,6 +429,27 @@
             .navbar-links {
                 display: none; /* For simplicity; a real site would use a hamburger menu */
             }
+            
+            /* --- UPDATED --- */
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .hero-content {
+                grid-row: 2; /* Text appears below the image on mobile */
+            }
+
+            .hero-image {
+                grid-row: 1; /* Image appears above the text on mobile */
+                max-width: 250px;
+                margin: 0 auto;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
 
             .project, .project:nth-of-type(even) {
                 grid-template-columns: 1fr;
@@ -441,16 +471,9 @@
             .project-tags, .project:nth-of-type(even) .project-tags {
                 justify-content: flex-start;
             }
-
-            .about-grid {
+            
+            .about-skills ul {
                 grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            .about-image-wrapper {
-                width: 200px; /* smaller on mobile */
-                height: 200px;
-                padding-top: 0;
-                margin: 0 auto;
             }
         }
     </style>
@@ -465,8 +488,8 @@
             <li><a href="#testimonials">Testimonials</a></li>
             <li><a href="#contact">Contact</a></li>
             <li>
-                <!-- REPLACE THIS with the path to your CV file -->
-                <a href="https://github.com/aishahuda/aishahuda/raw/main/Aisha_Huda_CV.pdf" class="btn-nav" target="_blank" rel="noopener noreferrer">CV</a>
+                <!-- Link to your CV file -->
+                <a href="https://github.com/your-username/your-username.github.io/raw/main/Syeda_Aisha_Huda_CV.pdf" class="btn-nav" target="_blank" rel="noopener noreferrer">CV</a>
             </li>
         </ul>
     </nav>
@@ -475,15 +498,23 @@
         <!-- Hero Section -->
         <section class="hero" id="home">
             <div class="container">
-                <div class="hero-content">
-                    <p class="intro">Hi, my name is</p>
-                    <h1>Syeda Aisha Huda.</h1>
-                    <h3>Aspiring Physicist | Published Author | IYPT National Finalist</h3>
-                    <p>I'm a passionate and award-winning secondary school student, dedicated to unraveling the mysteries of the universe through physics research and sharing knowledge through writing.</p>
-                    <div class="hero-buttons">
-                        <a href="#projects" class="btn">View My Work</a>
-                        <!-- REPLACE THIS with the path to your CV file -->
-                        <a href="https://github.com/aishahuda/aishahuda/raw/main/Aisha_Huda_CV.pdf" class="btn" target="_blank" rel="noopener noreferrer">Download CV</a>
+                <div class="hero-grid">
+                    <div class="hero-content">
+                        <p class="intro">Hi, my name is</p>
+                        <h1>Syeda Aisha Huda.</h1>
+                        <h3>Aspiring Physicist | Published Author | IYPT National Finalist</h3>
+                        <p>I'm a passionate and award-winning secondary school student, dedicated to unraveling the mysteries of the universe through physics research and sharing knowledge through writing.</p>
+                        <div class="hero-buttons">
+                            <a href="#projects" class="btn">View My Work</a>
+                            <!-- Link to your CV file -->
+                            <a href="https://github.com/your-username/your-username.github.io/raw/main/Syeda_Aisha_Huda_CV.pdf" class="btn" target="_blank" rel="noopener noreferrer">Download CV</a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <div class="hero-image-wrapper">
+                            <!-- REPLACE THIS with the link to your photo -->
+                            <img src="https://i.imgur.com/r62Lh7s.png" alt="Syeda Aisha Huda Profile Picture">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -530,14 +561,12 @@
                         </ul>
                     </div>
                     <div class="project-image">
-                        <!-- Replace with your project image -->
                         <a href="#"><img src="https://images.unsplash.com/photo-1614728263952-84ea256ec346?q=80&w=2070" alt="Flame and sound wave abstract"></a>
                     </div>
                 </div>
 
                 <div class="project">
                     <div class="project-image">
-                        <!-- Replace with your project image -->
                         <a href="#"><img src="https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?q=80&w=1935" alt="Water ripples in a bowl"></a>
                     </div>
                     <div class="project-content">
@@ -552,25 +581,6 @@
                         </ul>
                     </div>
                 </div>
-
-                <div class="project">
-                    <div class="project-content">
-                        <h3>Physics Made Easy</h3>
-                        <div class="project-description">
-                            <p>Authored and published a comprehensive physics guidebook on Amazon at age 17, designed to make complex concepts accessible through practical examples and effective problem-solving techniques.</p>
-                        </div>
-                        <ul class="project-tags">
-                            <li>Technical Writing</li>
-                            <li>Educational Design</li>
-                            <li>Publishing</li>
-                        </ul>
-                    </div>
-                    <div class="project-image">
-                        <!-- Replace with your project image -->
-                        <a href="#"><img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?q=80&w=2070" alt="Book with physics equations"></a>
-                    </div>
-                </div>
-
             </div>
         </section>
 
@@ -578,27 +588,19 @@
         <section id="about">
             <div class="container">
                 <h2 class="section-heading">About Me</h2>
-                <div class="about-grid">
-                    <div class="about-image">
-                        <div class="about-image-wrapper">
-                            <!-- REPLACE THIS with the link to your photo -->
-                            <img src="https://i.imgur.com/r62Lh7s.png" alt="Syeda Aisha Huda Profile Picture">
-                        </div>
-                    </div>
-                    <div class="about-text">
-                        <p>I am an award-winning secondary school student with a proven ability to communicate complex scientific ideas. I combine a rigorous, analytical approach to physics with creative problem-solving and a passion for visual arts. I'm eager to contribute my unique skills to a challenging undergraduate Physics program and continue exploring the intersection of science, art, and literature.</p>
-                        
-                        <div class="about-skills">
-                            <h3>Core Competencies</h3>
-                            <ul>
-                                <li>Python, MATLAB & LaTeX</li>
-                                <li>Scientific Writing & Research</li>
-                                <li>Experimental Design</li>
-                                <li>Data Analysis</li>
-                                <li>Public Speaking</li>
-                                <li>Creative Design</li>
-                            </ul>
-                        </div>
+                <div class="about-text">
+                    <p>I am an award-winning secondary school student with a proven ability to communicate complex scientific ideas. I combine a rigorous, analytical approach to physics with creative problem-solving and a passion for visual arts. I'm eager to contribute my unique skills to a challenging undergraduate Physics program and continue exploring the intersection of science, art, and literature.</p>
+                    
+                    <div class="about-skills">
+                        <h3>Core Competencies</h3>
+                        <ul>
+                            <li>Python, MATLAB & LaTeX</li>
+                            <li>Scientific Writing & Research</li>
+                            <li>Experimental Design</li>
+                            <li>Data Analysis</li>
+                            <li>Public Speaking</li>
+                            <li>Creative Design</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -633,7 +635,7 @@
     
     <footer>
         <div class="container">
-            <p>&copy; 2024 Syeda Aisha Huda. Designed with inspiration and code.</p>
+            <p>© 2024 Syeda Aisha Huda. Designed with inspiration and code.</p>
         </div>
     </footer>
 
