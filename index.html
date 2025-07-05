@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syeda Aisha Huda | Aspiring Physicist & Author</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-blue: #0a192f;
+            --light-blue: #112240;
+            --lightest-blue: #233554;
+            --slate: #8892b0;
+            --light-slate: #a8b2d1;
+            --white: #e6f1ff;
+            --accent-gold: #FFD700;
+            --font-sans: 'Poppins', sans-serif;
+            --font-serif: 'Lora', serif;
+        }
+
+        /* --- Global Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--dark-blue);
+            color: var(--slate);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        section {
+            padding: 100px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-serif);
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        h2.section-heading {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2.section-heading::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 3px;
+            background-color: var(--accent-gold);
+            margin-top: 10px;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--accent-gold);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--white);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border: 2px solid var(--accent-gold);
+            border-radius: 5px;
+            color: var(--accent-gold);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: rgba(255, 215, 0, 0.1);
+        }
+        
+        /* --- Navigation Bar --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            background-color: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(10px);
+            transition: top 0.3s;
+        }
+        
+        .navbar-logo {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+        
+        .navbar-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-links li {
+            margin-left: 30px;
+        }
+        
+        .navbar-links a {
+            color: var(--light-slate);
+            font-weight: 400;
+        }
+
+        .navbar-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .btn-nav {
+            padding: 8px 16px;
+            border: 1px solid var(--accent-gold);
+            border-radius: 4px;
+            color: var(--accent-gold);
+        }
+        .btn-nav:hover {
+            background-color: rgba(255, 215, 0, 0.1);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: left;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        .hero-content .intro {
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(40px, 8vw, 70px);
+            line-height: 1.1;
+        }
+        
+        .hero-content h3 {
+            font-size: clamp(20px, 5vw, 30px);
+            color: var(--light-slate);
+            margin: 10px 0 30px;
+            font-family: var(--font-sans);
+            font-weight: 400;
+        }
+
+        .hero-content p {
+            max-width: 600px;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        /* --- Achievements Section --- */
+        .achievements {
+            background-color: var(--light-blue);
+        }
+        
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .achievement-item {
+            background-color: var(--lightest-blue);
+            padding: 30px;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .achievement-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .achievement-item .icon {
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+        }
+
+        .achievement-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        /* --- Projects Section --- */
+        .project {
+            margin-bottom: 80px;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 10px;
+            align-items: center;
+        }
+
+        .project:last-child {
+            margin-bottom: 0;
+        }
+        
+        .project-image {
+            grid-column: 1 / 8;
+            grid-row: 1 / -1;
+            position: relative;
+        }
+
+        .project-content {
+            grid-column: 7 / -1;
+            grid-row: 1 / -1;
+            text-align: right;
+            z-index: 2;
+        }
+        
+        .project:nth-of-type(even) .project-image {
+            grid-column: 6 / -1;
+        }
+
+        .project:nth-of-type(even) .project-content {
+            grid-column: 1 / 7;
+            text-align: left;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+            filter: grayscale(80%) contrast(1) brightness(50%);
+            transition: filter 0.3s ease;
+        }
+        
+        .project:hover .project-image img {
+            filter: none;
+        }
+
+        .project-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .project-description {
+            background-color: var(--light-blue);
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+            margin-bottom: 20px;
+        }
+        
+        .project-tags {
+            list-style: none;
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            font-size: 0.9rem;
+            color: var(--light-slate);
+        }
+
+        .project:nth-of-type(even) .project-tags {
+            justify-content: flex-start;
+        }
+
+        /* --- About Me Section --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 2fr 3fr;
+            gap: 50px;
+            align-items: flex-start;
+        }
+        
+        .about-image {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .about-image-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 100%; /* 1:1 Aspect Ratio */
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--accent-gold);
+        }
+
+        .about-image-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: var(--accent-gold);
+        }
+
+        .about-skills ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .about-skills li {
+            position: relative;
+            padding-left: 20px;
+        }
+        .about-skills li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--accent-gold);
+        }
+        
+        /* --- Testimonials Section --- */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .testimonial-card {
+            background-color: var(--light-blue);
+            padding: 30px;
+            border-radius: 5px;
+            border-left: 4px solid var(--accent-gold);
+        }
+
+        .testimonial-card blockquote {
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        /* --- Contact Section --- */
+        #contact {
+            text-align: center;
+        }
+        
+        #contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        #contact p {
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 20px 40px;
+            color: var(--slate);
+            font-size: 0.9rem;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 25px;
+            }
+
+            .navbar-links {
+                display: none; /* For simplicity; a real site would use a hamburger menu */
+            }
+
+            .project, .project:nth-of-type(even) {
+                grid-template-columns: 1fr;
+            }
+            .project-image, .project:nth-of-type(even) .project-image {
+                grid-column: 1 / -1;
+                height: 300px;
+            }
+            .project-content, .project:nth-of-type(even) .project-content {
+                grid-column: 1 / -1;
+                padding: 40px 0 0;
+                text-align: left;
+            }
+            .project-description {
+                background-color: transparent;
+                padding: 0;
+                box-shadow: none;
+            }
+            .project-tags, .project:nth-of-type(even) .project-tags {
+                justify-content: flex-start;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .about-image-wrapper {
+                width: 200px; /* smaller on mobile */
+                height: 200px;
+                padding-top: 0;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="#" class="navbar-logo">SAH</a>
+        <ul class="navbar-links">
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li>
+                <!-- REPLACE THIS with the path to your CV file -->
+                <a href="path/to/your/cv.pdf" class="btn-nav" target="_blank" rel="noopener noreferrer">CV</a>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <p class="intro">Hi, my name is</p>
+                    <h1>Syeda Aisha Huda.</h1>
+                    <h3>Aspiring Physicist | Published Author | IYPT National Finalist</h3>
+                    <p>I'm a passionate and award-winning secondary school student, dedicated to unraveling the mysteries of the universe through physics research and sharing knowledge through writing.</p>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn">View My Work</a>
+                        <!-- REPLACE THIS with the path to your CV file -->
+                        <a href="path/to/your/cv.pdf" class="btn" target="_blank" rel="noopener noreferrer">Download CV</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section class="achievements" id="achievements">
+            <div class="container">
+                <div class="achievements-grid">
+                    <div class="achievement-item">
+                        <div class="icon">🏆</div>
+                        <h3>Top 10 IYPT Finalist</h3>
+                        <p>Secured a top 10 position in the Indian Young Physicists' Tournament 2025.</p>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="icon">📖</div>
+                        <h3>Published Author at 17</h3>
+                        <p>Authored "Physics Made Easy" available on Amazon.</p>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="icon">⭐</div>
+                        <h3>Cambridge High Distinction</h3>
+                        <p>Achieved A* grades in both Physics and Biology (IGCSE).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-heading">Featured Projects</h2>
+                
+                <div class="project">
+                    <div class="project-content">
+                        <h3>Sound vs. Fire</h3>
+                        <div class="project-description">
+                            <p>An experimental physics project exploring how acoustic properties influence flame extinguishment. Analyzed the relationship between sound wave intensity and flame behavior using experimental data and combustion theory.</p>
+                        </div>
+                        <ul class="project-tags">
+                            <li>Experimental Physics</li>
+                            <li>Data Analysis</li>
+                            <li>Acoustic Analysis</li>
+                        </ul>
+                    </div>
+                    <div class="project-image">
+                        <!-- Replace with your project image -->
+                        <a href="#"><img src="https://images.unsplash.com/photo-1614728263952-84ea256ec346?q=80&w=2070" alt="Flame and sound wave abstract"></a>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <div class="project-image">
+                        <!-- Replace with your project image -->
+                        <a href="#"><img src="https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?q=80&w=1935" alt="Water ripples in a bowl"></a>
+                    </div>
+                    <div class="project-content">
+                        <h3>The Wailing Bowl</h3>
+                        <div class="project-description">
+                            <p>An experimental study on how water motion within a vibrating bowl alters sound production. Examined acoustic impedance, nodal meridians, and energy dissipation to reveal the complex relationship between fluid dynamics and sound.</p>
+                        </div>
+                        <ul class="project-tags">
+                            <li>Fluid Dynamics</li>
+                            <li>Wave Physics</li>
+                            <li>Acoustic Engineering</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <div class="project-content">
+                        <h3>Physics Made Easy</h3>
+                        <div class="project-description">
+                            <p>Authored and published a comprehensive physics guidebook on Amazon at age 17, designed to make complex concepts accessible through practical examples and effective problem-solving techniques.</p>
+                        </div>
+                        <ul class="project-tags">
+                            <li>Technical Writing</li>
+                            <li>Educational Design</li>
+                            <li>Publishing</li>
+                        </ul>
+                    </div>
+                    <div class="project-image">
+                        <!-- Replace with your project image -->
+                        <a href="#"><img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?q=80&w=2070" alt="Book with physics equations"></a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about">
+            <div class="container">
+                <h2 class="section-heading">About Me</h2>
+                <div class="about-grid">
+                    <div class="about-image">
+                        <div class="about-image-wrapper">
+                            <!-- REPLACE THIS with the link to your photo -->
+                            <img src="https://i.imgur.com/r62Lh7s.png" alt="Syeda Aisha Huda Profile Picture">
+                        </div>
+                    </div>
+                    <div class="about-text">
+                        <p>I am an award-winning secondary school student with a proven ability to communicate complex scientific ideas. I combine a rigorous, analytical approach to physics with creative problem-solving and a passion for visual arts. I'm eager to contribute my unique skills to a challenging undergraduate Physics program and continue exploring the intersection of science, art, and literature.</p>
+                        
+                        <div class="about-skills">
+                            <h3>Core Competencies</h3>
+                            <ul>
+                                <li>Python, MATLAB & LaTeX</li>
+                                <li>Scientific Writing & Research</li>
+                                <li>Experimental Design</li>
+                                <li>Data Analysis</li>
+                                <li>Public Speaking</li>
+                                <li>Creative Design</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials">
+            <div class="container">
+                <h2 class="section-heading">What People Say</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <blockquote>"Aisha's experimental physics research demonstrates remarkable scientific rigor and creativity. Her work on acoustic phenomena shows a deep understanding of complex wave physics principles."</blockquote>
+                        <cite><span class="testimonial-author">Dr. Sarah Al-Mahmoud</span>, Physics Department Head</cite>
+                    </div>
+                    <div class="testimonial-card">
+                        <blockquote>"Publishing 'Physics Made Easy' at just 17 years old showcases Aisha's exceptional ability to communicate complex scientific concepts clearly. Her writing talent is truly impressive."</blockquote>
+                        <cite><span class="testimonial-author">Prof. Ahmed Hassan</span>, Academic Advisor</cite>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <h2>Get In Touch</h2>
+                <p>I am currently seeking opportunities for undergraduate research and am always open to connecting with professors, students, and collaborators. Please feel free to reach out!</p>
+                <a href="mailto:aishahuda08@gmail.com" class="btn">Say Hello</a>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Syeda Aisha Huda. Designed with inspiration and code.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple fade-in animation on scroll
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+
+</body>
+</html>
